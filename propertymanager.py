@@ -39,10 +39,12 @@ class PropertyManager:
 
     @property
     def TLT(self) -> Set[int]:  # 天赋 talent TLT
+        '''返回已触发的天赋'''
         return self._base.talent.triggered
 
     @property
     def EVT(self) -> Set[int]:
+        '''返回已触发的事件'''
         return self._base.event.triggered
 
     def apply(self, effect: Dict[str, int]):

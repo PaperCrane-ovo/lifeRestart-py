@@ -30,9 +30,9 @@ def genp(prop):
 
 def run():
     life = Life()
-    life.setErrorHandler(lambda e: traceback.print_exc())
-    life.setTalentHandler(lambda ts: random.choice(ts).id)
-    life.setPropertyhandler(genp)
+    life.set_error_handler(lambda e: traceback.print_exc())
+    life.set_talent_handler(lambda ts: random.choice(ts).id)
+    life.set_property_handler(genp)
 
     life.choose()
     #life.property.INT = 10

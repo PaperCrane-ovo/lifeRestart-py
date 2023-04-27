@@ -18,7 +18,7 @@ class DummyList(list):
         return super().__contains__(o)
 
 
-def parseCondition(cond: str):
+def parse_condition(cond: str):
     cond2 = _regattr.sub(lambda m: f'getattr(x, "{m.group()}")', cond.replace('AEVT', 'AVT')).replace(
         '?[', ' in DummyList([').replace('![', 'not in DummyList([').replace(']', '])').replace('|', ' or ')
     while True:

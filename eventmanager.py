@@ -19,8 +19,8 @@ class EventManager:
         self.triggered: Set[int] = set()
         self._rnd = rnd
 
-    def _randEvent(self, events: List[WeightedEvent]) -> int:
-        events_checked = [ev for ev in events if EventManager._events[ev.evt].checkCondition(
+    def _rand_event(self, events: List[WeightedEvent]) -> int:
+        events_checked = [ev for ev in events if EventManager._events[ev.evt].check_condition(
             self._base.property)]
         total = sum(e.weight for e in events_checked)
         rnd = self._rnd.random() * total
@@ -30,10 +30,10 @@ class EventManager:
                 return ev.evt
         return events[0].evt
 
-    def _runEvent(self, event: Event) -> Iterator[str]:
+    def _run_event(self, event: Event) -> Iterator[str]:
         self.triggered.add(event.id)
-        return event.runEvent(self._base.property, self._runEvent)
+        return event.run_event(self._base.property, self._run_event)
 
-    def runEvents(self, events: List[WeightedEvent]) -> Iterator[str]:
-        ev = self._randEvent(events)
-        return self._runEvent(EventManager._events[ev])
+    def run_events(self, events: List[WeightedEvent]) -> Iterator[str]:
+        ev = self._rand_event(events)
+        return self._run_event(EventManager._events[ev])

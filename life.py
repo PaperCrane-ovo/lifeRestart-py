@@ -99,7 +99,7 @@ class Life:
         '''返回当前人物属性的迭代器'''
         yield f'【{self.property.AGE}岁/颜{self.property.CHR}智{self.property.INT}体{self.property.STR}钱{self.property.MNY}乐{self.property.SPR}】'
 
-    def setErrorHandler(self, handler: Callable[[Exception], None]) -> None:
+    def set_error_handler(self, handler: Callable[[Exception], None]) -> None:
         '''
         设置异常处理器
 
@@ -114,7 +114,7 @@ class Life:
         '''
         self._errorhandler = handler
 
-    def setTalentHandler(self, handler: Callable[[List[Talent]], int]) -> None:
+    def set_talent_handler(self, handler: Callable[[List[Talent]], int]) -> None:
         '''
         设置收到天赋的处理器
 
@@ -129,7 +129,7 @@ class Life:
         '''
         self._talenthandler = handler
 
-    def setPropertyhandler(self, handler: Callable[[int], List[int]]) -> None:
+    def set_property_handler(self, handler: Callable[[int], List[int]]) -> None:
         '''
         设置属性分配的处理器
 
@@ -166,11 +166,11 @@ class Life:
         '''
         while self._alive():
             self.age.grow()
-            for t in self.age.getTalents():
+            for t in self.age.get_talents():
                 self.talent.add_talent(t)
 
             tal_log = self.talent.update_talent()
-            evt_log = self.event.runEvents(self.age.getEvents())
+            evt_log = self.event.run_events(self.age.get_events())
 
             yield list(itertools.chain(self._prefix(), evt_log, tal_log))
 

@@ -53,9 +53,9 @@ def pick_talent(ts):
 
 
 def run():
-    life.setErrorHandler(on_error)
-    life.setTalentHandler(pick_talent)
-    life.setPropertyhandler(genp)
+    life.set_error_handler(on_error)
+    life.set_talent_handler(pick_talent)
+    life.set_property_handler(genp)
 
     #from TalentManager import TalentManager
     # life.talent.talents.append(TalentManager.talentDict[1122])
