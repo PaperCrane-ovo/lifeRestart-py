@@ -5,11 +5,11 @@ import itertools
 from typing import Callable, Dict, List, Iterator
 import json
 
-from EventManager import EventManager
-from AgeManager import AgeManager
-from Talent import Talent
-from PropertyManager import PropertyManager
-from TalentManager import TalentManager
+from eventmanager import EventManager
+from agemanager import AgeManager
+from talent import Talent
+from propertymanager import PropertyManager
+from talentmanager import TalentManager
 
 
 class HandlerException(Exception):
@@ -167,9 +167,9 @@ class Life:
         while self._alive():
             self.age.grow()
             for t in self.age.getTalents():
-                self.talent.addTalent(t)
+                self.talent.add_talent(t)
 
-            tal_log = self.talent.updateTalent()
+            tal_log = self.talent.update_talent()
             evt_log = self.event.runEvents(self.age.getEvents())
 
             yield list(itertools.chain(self._prefix(), evt_log, tal_log))
@@ -182,7 +182,7 @@ class Life:
         -------
         None
         '''
-        talents = list(self.talent.genTalents(self._talent_randomized))
+        talents = list(self.talent.gen_talents(self._talent_randomized))
         if self._talent_inherit is not None:
             talents.insert(0, self._talent_inherit)
         tdict = {t.id: t for t in talents}
@@ -192,14 +192,14 @@ class Life:
                 for t2 in self.talent.talents:
                     if t2.isExclusiveWith(t):
                         raise HandlerException(f'你选择的天赋和{t2}不能同时拥有')
-                self.talent.addTalent(t)
+                self.talent.add_talent(t)
 
                 talents.remove(t)
                 tdict.pop(t.id)
             except Exception as e:
                 self._errorhandler(e)
 
-        self.talent.updateTalentProp()
+        self.talent.update_talent_prop()
 
         while True:
             try:

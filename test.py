@@ -2,9 +2,9 @@ import random
 import traceback
 import msvcrt
 
-from Talent import Talent
-from Life import Life
-from TalentManager import TalentManager
+from talent import Talent
+from life import Life
+from talentmanager import TalentManager
 
 Life.load('data')
 

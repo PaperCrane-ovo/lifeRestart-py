@@ -1,5 +1,5 @@
 from typing import List
-from Talent import Talent
+from talent import Talent
 
 class WeightedEvent:
     def __init__(self, o: str):

@@ -1,5 +1,5 @@
 from typing import Dict, List
-from Utils import parseCondition
+from utils import parseCondition
 
 class Talent:
     def __init__(self, json):
