@@ -2,4 +2,4 @@
 lifeRestart game in python, origin [repo](https://github.com/VickScarlet/lifeRestart)
 ## TODO
 - add docstring
-- transplant to my bot
+- transplant to my [bot](https://github.com/PaperCrane-ovo/shiro-bot)
